@@ -117,7 +117,6 @@ xlabel('t(sec)');
 
 %% 2. Get angles from Acceleration Sensor and Gyro Sensor, respectively.
 
-
 z = [ac_theta'; gy_s'];
 Q = 0.001*eye(2);
 R = [1 0; 0 0.001];
@@ -128,7 +127,6 @@ A = [1 dt; 0 1]; % 상태 전이 행렬
 H = [1 0; 0 1]; % 관측 행렬
 [xhat] = kalman_filter(z, A, H, Q, R, x0, P0);
 
-
 figure(5);
 plot(t, xhat(1, :), 'r');
 hold on;
@@ -138,9 +136,7 @@ grid on;
 xlabel('time(s)');
 ylabel('angle(deg)');
 title('Angle from Acceleration Sensor vs Kalman Filtered Angle');
-
-
-
+legend('Kalman Filter', 'Angle from Accel Sensor');
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 3. Sensor Fusion ( Complementary filter )
